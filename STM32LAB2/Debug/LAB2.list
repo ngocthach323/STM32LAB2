@@ -480,12 +480,12 @@ void timerRun() {
  8000346:	2300      	movs	r3, #0
  8000348:	607b      	str	r3, [r7, #4]
  800034a:	e01c      	b.n	8000386 <timerRun+0x46>
-		if (timer_counter[i] >= 0) {
+		if (timer_counter[i] > 0) {
  800034c:	4a12      	ldr	r2, [pc, #72]	; (8000398 <timerRun+0x58>)
  800034e:	687b      	ldr	r3, [r7, #4]
  8000350:	f852 3023 	ldr.w	r3, [r2, r3, lsl #2]
  8000354:	2b00      	cmp	r3, #0
- 8000356:	db13      	blt.n	8000380 <timerRun+0x40>
+ 8000356:	dd13      	ble.n	8000380 <timerRun+0x40>
 			timer_counter[i]--;
  8000358:	4a0f      	ldr	r2, [pc, #60]	; (8000398 <timerRun+0x58>)
  800035a:	687b      	ldr	r3, [r7, #4]
