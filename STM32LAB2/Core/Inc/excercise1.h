@@ -11,6 +11,6 @@
 #include "software_timer.h"
 
 void display7SEG(int num);
-void run_excercise1(int status);
+void run_excercise1(int *status);
 
 #endif /* INC_EXCERCISE1_H_ */
