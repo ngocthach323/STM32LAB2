@@ -9,6 +9,7 @@
 #define TICK 10
 int timer_flag[10];
 int timer_counter[10];
+
 void setTimer(int index, int counter) {
 	timer_flag[index] = 0;
 	timer_counter[index] = counter / TICK;

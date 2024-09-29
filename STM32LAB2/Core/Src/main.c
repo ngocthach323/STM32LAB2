@@ -101,8 +101,9 @@ int main(void)
   {
     /* USER CODE END WHILE */
 	  if (timer_flag[0] == 1) {
-		  run_excercise1(&status);
 		  setTimer(0, 500);
+		  run_excercise1(status);
+		  status =! status;
 	  }
 
     /* USER CODE BEGIN 3 */
