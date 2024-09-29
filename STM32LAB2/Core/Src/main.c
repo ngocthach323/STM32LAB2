@@ -44,7 +44,7 @@
 TIM_HandleTypeDef htim2;
 
 /* USER CODE BEGIN PV */
-int status = 0;
+
 /* USER CODE END PV */
 
 /* Private function prototypes -----------------------------------------------*/
@@ -95,11 +95,15 @@ int main(void)
 
   /* Infinite loop */
   /* USER CODE BEGIN WHILE */
-  setTimer(0, 1000);
+  int status = 0;
+  setTimer(0, 500);
   while (1)
   {
     /* USER CODE END WHILE */
-	  run_excercise1(&status);
+	  if (timer_flag[0] == 1) {
+		  setTimer(0, 500);
+		  run_excercise1(&status);
+	  }
     /* USER CODE BEGIN 3 */
   }
   /* USER CODE END 3 */

@@ -10,7 +10,7 @@
 #include"main.h"
 
 extern int timer_flag[10];
-int timer_counter[10];
+
 void setTimer(int index, int counter);
 void timerRun();
 
