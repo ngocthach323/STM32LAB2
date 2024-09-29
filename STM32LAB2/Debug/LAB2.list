@@ -297,14 +297,14 @@ int main(void)
  800028c:	681b      	ldr	r3, [r3, #0]
  800028e:	2b01      	cmp	r3, #1
  8000290:	d1fb      	bne.n	800028a <main+0x2a>
-		  setTimer(0, 500);
- 8000292:	f44f 71fa 	mov.w	r1, #500	; 0x1f4
- 8000296:	2000      	movs	r0, #0
- 8000298:	f000 f8f4 	bl	8000484 <setTimer>
 		  run_excercise1(&status);
- 800029c:	1d3b      	adds	r3, r7, #4
- 800029e:	4618      	mov	r0, r3
- 80002a0:	f7ff ffaa 	bl	80001f8 <run_excercise1>
+ 8000292:	1d3b      	adds	r3, r7, #4
+ 8000294:	4618      	mov	r0, r3
+ 8000296:	f7ff ffaf 	bl	80001f8 <run_excercise1>
+		  setTimer(0, 500);
+ 800029a:	f44f 71fa 	mov.w	r1, #500	; 0x1f4
+ 800029e:	2000      	movs	r0, #0
+ 80002a0:	f000 f8f0 	bl	8000484 <setTimer>
 	  if (timer_flag[0] == 1) {
  80002a4:	e7f1      	b.n	800028a <main+0x2a>
  80002a6:	bf00      	nop
