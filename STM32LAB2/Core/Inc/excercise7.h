@@ -9,9 +9,9 @@
 #define INC_EXCERCISE7_H_
 
 #include "main.h"
-extern int led_buffer[4];
+
 void display7SEG(int num);
-//void update7SEG(int *index);
+void update7SEG(int *index);
 void updateClockBuffer(int *hour, int *minute);
 
 #endif /* INC_EXCERCISE7_H_ */

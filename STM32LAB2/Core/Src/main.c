@@ -57,41 +57,7 @@ static void MX_TIM2_Init(void);
 
 /* Private user code ---------------------------------------------------------*/
 /* USER CODE BEGIN 0 */
-int index_led = 0;
-void update7SEG(int index) {
-	switch (index) {
-		case 0:
-			HAL_GPIO_WritePin(GPIOA, GPIO_PIN_6, GPIO_PIN_RESET);
-			HAL_GPIO_WritePin(GPIOA, GPIO_PIN_7, GPIO_PIN_SET);
-			HAL_GPIO_WritePin(GPIOA, GPIO_PIN_8, GPIO_PIN_SET);
-			HAL_GPIO_WritePin(GPIOA, GPIO_PIN_9, GPIO_PIN_SET);
-			display7SEG(led_buffer[0]);
-			break;
-		case 1:
-			HAL_GPIO_WritePin(GPIOA, GPIO_PIN_6, GPIO_PIN_SET);
-			HAL_GPIO_WritePin(GPIOA, GPIO_PIN_7, GPIO_PIN_RESET);
-			HAL_GPIO_WritePin(GPIOA, GPIO_PIN_8, GPIO_PIN_SET);
-			HAL_GPIO_WritePin(GPIOA, GPIO_PIN_9, GPIO_PIN_SET);
-			display7SEG(led_buffer[1]);
-			break;
-		case 2:
-			HAL_GPIO_WritePin(GPIOA, GPIO_PIN_6, GPIO_PIN_SET);
-			HAL_GPIO_WritePin(GPIOA, GPIO_PIN_7, GPIO_PIN_SET);
-			HAL_GPIO_WritePin(GPIOA, GPIO_PIN_8, GPIO_PIN_RESET);
-			HAL_GPIO_WritePin(GPIOA, GPIO_PIN_9, GPIO_PIN_SET);
-			display7SEG(led_buffer[2]);
-			break;
-		case 3:
-			HAL_GPIO_WritePin(GPIOA, GPIO_PIN_6, GPIO_PIN_SET);
-			HAL_GPIO_WritePin(GPIOA, GPIO_PIN_7, GPIO_PIN_SET);
-			HAL_GPIO_WritePin(GPIOA, GPIO_PIN_8, GPIO_PIN_SET);
-			HAL_GPIO_WritePin(GPIOA, GPIO_PIN_9, GPIO_PIN_RESET);
-			display7SEG(led_buffer[3]);
-			break;
-		default:
-			break;
-	}
-}
+
 /* USER CODE END 0 */
 
 /**
@@ -132,8 +98,10 @@ int main(void)
   int hour = 15;
   int minute = 8;
   int second = 50;
+  int index_led = 0;
   setTimer(0, 1000);
   setTimer(1, 1000);
+  setTimer(2, 250);
   while (1)
   {
     /* USER CODE END WHILE */
@@ -156,6 +124,18 @@ int main(void)
 			  hour = 0;
 		  }
 		  updateClockBuffer(&hour, &minute);
+
+		  if (timer_flag[2] == 1) {
+			  if (index_led <= 3) {
+				  update7SEG(&index_led);
+				  index_led++;
+				  if (index_led == 4) {
+					  index_led = 0;
+				  }
+			  }
+			  setTimer(2, 250);
+		  }
+
 		  setTimer(1, 1000);
 	  }
 
@@ -286,23 +266,8 @@ static void MX_GPIO_Init(void)
 }
 
 /* USER CODE BEGIN 4 */
-int count = 250;
 void HAL_TIM_PeriodElapsedCallback(TIM_HandleTypeDef *htim) {
 	timerRun();
-
-	if (count > 0) {
-		if (index_led <= 3) {
-			update7SEG(index_led);
-			index_led++;
-			if (index_led == 4) {
-				index_led = 0;
-			}
-		}
-		count--;
-	}
-	if (count <= 0) {
-		count = 250;
-	}
 }
 /* USER CODE END 4 */
 
