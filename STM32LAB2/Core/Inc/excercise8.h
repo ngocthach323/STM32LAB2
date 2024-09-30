@@ -5,8 +5,8 @@
  *      Author: ACER
  */
 
-#ifndef INC_EXCERCISE7_H_
-#define INC_EXCERCISE7_H_
+#ifndef INC_EXCERCISE8_H_
+#define INC_EXCERCISE8_H_
 
 #include "main.h"
 
@@ -14,4 +14,4 @@ void display7SEG(int num);
 void update7SEG(int *index);
 void updateClockBuffer(int *hour, int *minute);
 
-#endif /* INC_EXCERCISE7_H_ */
+#endif /* INC_EXCERCISE8_H_ */
