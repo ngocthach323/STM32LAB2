@@ -1,2 +1,3 @@
-excercsie5.c:9:6:display7SEG	16	static
-excercsie5.c:111:6:updateClockBuffer	4	static
+excercsie5.c:11:6:display7SEG	16	static
+excercsie5.c:113:6:update7SEG	16	static
+excercsie5.c:148:6:updateClockBuffer	16	static

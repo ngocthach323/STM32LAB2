@@ -11,6 +11,7 @@
 #include "main.h"
 
 void display7SEG(int num);
-void updateClockBuffer();
+void update7SEG(int *index);
+void updateClockBuffer(int *hour, int *minute);
 
 #endif /* INC_EXCERCISE5_H_ */

@@ -6,6 +6,8 @@
  */
 #include "excercise5.h"
 
+int led_buffer[4] = {9, 3, 7, 5};
+
 void display7SEG(int num) {
 	if (num == 0) {
 		HAL_GPIO_WritePin(GPIOB, GPIO_PIN_0, GPIO_PIN_RESET);
@@ -108,7 +110,57 @@ void display7SEG(int num) {
 	}
 }
 
-void updateClockBuffer() {
+void update7SEG(int *index) {
+	switch (*index) {
+		case 0:
+			HAL_GPIO_WritePin(GPIOA, GPIO_PIN_6, GPIO_PIN_RESET);
+			HAL_GPIO_WritePin(GPIOA, GPIO_PIN_7, GPIO_PIN_SET);
+			HAL_GPIO_WritePin(GPIOA, GPIO_PIN_8, GPIO_PIN_SET);
+			HAL_GPIO_WritePin(GPIOA, GPIO_PIN_9, GPIO_PIN_SET);
+			display7SEG(led_buffer[0]);
+			break;
+		case 1:
+			HAL_GPIO_WritePin(GPIOA, GPIO_PIN_6, GPIO_PIN_SET);
+			HAL_GPIO_WritePin(GPIOA, GPIO_PIN_7, GPIO_PIN_RESET);
+			HAL_GPIO_WritePin(GPIOA, GPIO_PIN_8, GPIO_PIN_SET);
+			HAL_GPIO_WritePin(GPIOA, GPIO_PIN_9, GPIO_PIN_SET);
+			display7SEG(led_buffer[1]);
+			break;
+		case 2:
+			HAL_GPIO_WritePin(GPIOA, GPIO_PIN_6, GPIO_PIN_SET);
+			HAL_GPIO_WritePin(GPIOA, GPIO_PIN_7, GPIO_PIN_SET);
+			HAL_GPIO_WritePin(GPIOA, GPIO_PIN_8, GPIO_PIN_RESET);
+			HAL_GPIO_WritePin(GPIOA, GPIO_PIN_9, GPIO_PIN_SET);
+			display7SEG(led_buffer[2]);
+			break;
+		case 3:
+			HAL_GPIO_WritePin(GPIOA, GPIO_PIN_6, GPIO_PIN_SET);
+			HAL_GPIO_WritePin(GPIOA, GPIO_PIN_7, GPIO_PIN_SET);
+			HAL_GPIO_WritePin(GPIOA, GPIO_PIN_8, GPIO_PIN_SET);
+			HAL_GPIO_WritePin(GPIOA, GPIO_PIN_9, GPIO_PIN_RESET);
+			display7SEG(led_buffer[3]);
+			break;
+		default:
+			break;
+	}
+}
 
+void updateClockBuffer(int *hour, int *minute) {
+	if (*hour < 10) {
+		led_buffer[0] = 0;
+		led_buffer[1] = *hour;
+	}
+	if (*hour >= 10) {
+		led_buffer[0] = *hour / 10;
+		led_buffer[1] = *hour % 10;
+	}
+	if (*minute < 10) {
+		led_buffer[2] = 0;
+		led_buffer[3] = *minute;
+	}
+	if (*minute >= 10) {
+		led_buffer[2] = *minute / 10;
+		led_buffer[3] = *minute % 10;
+	}
 }
 

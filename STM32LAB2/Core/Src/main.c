@@ -99,6 +99,7 @@ int main(void)
   int hour = 15;
   int minute = 8;
   int second = 50;
+  setTimer(0, 250);
   while (1)
   {
     /* USER CODE END WHILE */
@@ -114,7 +115,17 @@ int main(void)
 	  if (hour >= 24) {
 		  hour = 0;
 	  }
-	  updateCLockBuffer();
+	  updateClockBuffer(&hour, &minute);
+	  if (timer_flag[0] == 1) {
+		  if (index_led <= 3) {
+			  update7SEG(&index_led);
+			  index_led++;
+			  if (index_led == 4) {
+				  index_led = 0;
+			  }
+		  }
+		  setTimer(0, 250);
+	  }
 	  HAL_Delay(1000);
     /* USER CODE BEGIN 3 */
   }
