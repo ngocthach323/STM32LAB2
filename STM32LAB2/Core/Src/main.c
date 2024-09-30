@@ -116,6 +116,7 @@ int main(void)
 		  hour = 0;
 	  }
 	  updateClockBuffer(&hour, &minute);
+
 	  if (timer_flag[0] == 1) {
 		  if (index_led <= 3) {
 			  update7SEG(&index_led);
@@ -125,6 +126,7 @@ int main(void)
 			  }
 		  }
 		  setTimer(0, 250);
+
 	  }
 	  HAL_Delay(1000);
     /* USER CODE BEGIN 3 */
