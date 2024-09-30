@@ -94,11 +94,16 @@ int main(void)
 
   /* Infinite loop */
 //TODO setTimer
+  setTimer(0, 1000);
   /* USER CODE BEGIN WHILE */
   while (1)
   {
     /* USER CODE END WHILE */
 	  //TODO excercise
+	  if (timer_flag[0] == 1) {
+		  HAL_GPIO_TogglePin(GPIOA, GPIO_PIN_5);
+		  setTimer(0, 2000);
+	  }
     /* USER CODE BEGIN 3 */
   }
   /* USER CODE END 3 */
