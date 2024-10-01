@@ -6,6 +6,7 @@
  */
 #include "excercise4.h"
 
+int index_led = 0;
 int led_buffer[4] = {9, 3, 7, 5};
 
 void display7SEG(int num) {
@@ -110,8 +111,8 @@ void display7SEG(int num) {
 	}
 }
 
-void update7SEG(int *index) {
-	switch (*index) {
+void update7SEG(int index) {
+	switch (index) {
 		case 0:
 			HAL_GPIO_WritePin(GPIOA, GPIO_PIN_6, GPIO_PIN_RESET);
 			HAL_GPIO_WritePin(GPIOA, GPIO_PIN_7, GPIO_PIN_SET);
