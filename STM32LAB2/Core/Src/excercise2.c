@@ -6,6 +6,8 @@
  */
 #include "excercise2.h"
 
+int status = 0;
+
 void display7SEG(int num) {
 	if (num == 0) {
 		HAL_GPIO_WritePin(GPIOB, GPIO_PIN_0, GPIO_PIN_RESET);
@@ -48,15 +50,15 @@ void display7SEG(int num) {
 	}
 }
 
-void run_7SEG(int *status) {
-	switch (*status) {
+void run_7SEG(int status) {
+	switch (status) {
 		case 0:
 			HAL_GPIO_WritePin(GPIOA, GPIO_PIN_6, GPIO_PIN_RESET);
 			HAL_GPIO_WritePin(GPIOA, GPIO_PIN_7, GPIO_PIN_SET);
 			HAL_GPIO_WritePin(GPIOA, GPIO_PIN_8, GPIO_PIN_SET);
 			HAL_GPIO_WritePin(GPIOA, GPIO_PIN_9, GPIO_PIN_SET);
 			display7SEG(1);
-			*status = 1;
+			status = 1;
 			break;
 		case 1:
 			HAL_GPIO_WritePin(GPIOA, GPIO_PIN_6, GPIO_PIN_SET);
@@ -64,7 +66,7 @@ void run_7SEG(int *status) {
 			HAL_GPIO_WritePin(GPIOA, GPIO_PIN_8, GPIO_PIN_SET);
 			HAL_GPIO_WritePin(GPIOA, GPIO_PIN_9, GPIO_PIN_SET);
 			display7SEG(2);
-			*status = 2;
+			status = 2;
 			break;
 		case 2:
 			HAL_GPIO_WritePin(GPIOA, GPIO_PIN_6, GPIO_PIN_SET);
@@ -72,7 +74,7 @@ void run_7SEG(int *status) {
 			HAL_GPIO_WritePin(GPIOA, GPIO_PIN_8, GPIO_PIN_RESET);
 			HAL_GPIO_WritePin(GPIOA, GPIO_PIN_9, GPIO_PIN_SET);
 			display7SEG(3);
-			*status = 3;
+			status = 3;
 			break;
 		case 3:
 			HAL_GPIO_WritePin(GPIOA, GPIO_PIN_6, GPIO_PIN_SET);
@@ -80,7 +82,7 @@ void run_7SEG(int *status) {
 			HAL_GPIO_WritePin(GPIOA, GPIO_PIN_8, GPIO_PIN_SET);
 			HAL_GPIO_WritePin(GPIOA, GPIO_PIN_9, GPIO_PIN_RESET);
 			display7SEG(0);
-			*status = 0;
+			status = 0;
 			break;
 		default:
 			break;

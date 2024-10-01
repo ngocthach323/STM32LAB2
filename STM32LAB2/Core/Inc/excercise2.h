@@ -10,7 +10,9 @@
 
 #include "main.h"
 
+extern int status;
+
 void display7SEG(int num);
-void run_7SEG(int *status);
+void run_7SEG(int status);
 
 #endif /* INC_EXCERCISE2_H_ */

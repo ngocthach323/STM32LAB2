@@ -135,7 +135,6 @@ int main(void)
 
   /* Infinite loop */
   /* USER CODE BEGIN WHILE */
-  int status = 0;
   setTimer(0, 1000);
   setTimer(1, 500);
   while (1)
@@ -147,7 +146,7 @@ int main(void)
 	  }
 
 	  if (timer_flag[1] == 1) {
-		  run_7SEG(&status);
+		  run_7SEG(status);
 		  setTimer(1, 500);
 	  }
     /* USER CODE BEGIN 3 */
