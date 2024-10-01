@@ -95,10 +95,6 @@ int main(void)
 
   /* Infinite loop */
   /* USER CODE BEGIN WHILE */
-  int index_led = 0;
-  int hour = 15;
-  int minute = 8;
-  int second = 50;
   setTimer(0, 250);
   while (1)
   {
@@ -115,16 +111,14 @@ int main(void)
 	  if (hour >= 24) {
 		  hour = 0;
 	  }
-	  updateClockBuffer(&hour, &minute);
+	  updateClockBuffer();
 
 	  if (timer_flag[0] == 1) {
-		  if (index_led <= 3) {
-			  update7SEG(&index_led);
-			  index_led++;
-			  if (index_led == 4) {
-				  index_led = 0;
-			  }
-		  }
+		  update7SEG(index_led);
+		  	  index_led++;
+		  	  if (index_led == 4) {
+		  		  index_led = 0;
+		  	  }
 		  setTimer(0, 250);
 
 	  }
