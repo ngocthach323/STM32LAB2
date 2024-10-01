@@ -10,7 +10,9 @@
 
 #include "main.h"
 
+extern int index_led;
+
 void display7SEG(int num);
-void update7SEG(int *index);
+void update7SEG(int index);
 
 #endif /* INC_EXCERCISE3_H_ */

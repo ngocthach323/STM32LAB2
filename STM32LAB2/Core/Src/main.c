@@ -95,18 +95,15 @@ int main(void)
 
   /* Infinite loop */
   /* USER CODE BEGIN WHILE */
-  int index_led = 0;
   setTimer(0, 500);
   while (1)
   {
     /* USER CODE END WHILE */
 	  if (timer_flag[0] == 1) {
-		  if (index_led <= 3) {
-			  update7SEG(&index_led);
-			  index_led++;
-			  if (index_led == 4) {
-				  index_led = 0;
-			  }
+		  update7SEG(index_led);
+		  index_led++;
+		  if (index_led == 4) {
+			  index_led = 0;
 		  }
 		  setTimer(0, 500);
 	  }
