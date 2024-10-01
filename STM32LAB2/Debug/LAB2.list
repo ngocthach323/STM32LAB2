@@ -27,23 +27,23 @@ Idx Name          Size      VMA       LMA       File off  Algn
                   ALLOC
  11 .ARM.attributes 00000029  00000000  00000000  0002002c  2**0
                   CONTENTS, READONLY
- 12 .debug_info   000087b5  00000000  00000000  00020055  2**0
+ 12 .debug_info   00008a21  00000000  00000000  00020055  2**0
                   CONTENTS, READONLY, DEBUGGING, OCTETS
- 13 .debug_abbrev 00001660  00000000  00000000  0002880a  2**0
+ 13 .debug_abbrev 00001767  00000000  00000000  00028a76  2**0
                   CONTENTS, READONLY, DEBUGGING, OCTETS
- 14 .debug_aranges 00000970  00000000  00000000  00029e70  2**3
+ 14 .debug_aranges 00000988  00000000  00000000  0002a1e0  2**3
                   CONTENTS, READONLY, DEBUGGING, OCTETS
- 15 .debug_ranges 000008b8  00000000  00000000  0002a7e0  2**3
+ 15 .debug_ranges 000008c0  00000000  00000000  0002ab68  2**3
                   CONTENTS, READONLY, DEBUGGING, OCTETS
- 16 .debug_macro  000163b2  00000000  00000000  0002b098  2**0
+ 16 .debug_macro  00016567  00000000  00000000  0002b428  2**0
                   CONTENTS, READONLY, DEBUGGING, OCTETS
- 17 .debug_line   00009b22  00000000  00000000  0004144a  2**0
+ 17 .debug_line   0000a187  00000000  00000000  0004198f  2**0
                   CONTENTS, READONLY, DEBUGGING, OCTETS
- 18 .debug_str    00081de8  00000000  00000000  0004af6c  2**0
+ 18 .debug_str    00081e14  00000000  00000000  0004bb16  2**0
                   CONTENTS, READONLY, DEBUGGING, OCTETS
- 19 .comment      00000053  00000000  00000000  000ccd54  2**0
+ 19 .comment      00000053  00000000  00000000  000cd92a  2**0
                   CONTENTS, READONLY
- 20 .debug_frame  00002690  00000000  00000000  000ccda8  2**2
+ 20 .debug_frame  000026a0  00000000  00000000  000cd980  2**2
                   CONTENTS, READONLY, DEBUGGING, OCTETS
 
 Disassembly of section .text:
@@ -77,11 +77,11 @@ Disassembly of section .text:
  8000148:	08002118 	.word	0x08002118
 
 0800014c <display7SEG>:
+int minute = 8;
+int second = 50;
+int index_led = 0;
+int led_buffer[4] = {9, 7, 5, 3};
 
-/* USER CODE END PFP */
-
-/* Private user code ---------------------------------------------------------*/
-/* USER CODE BEGIN 0 */
 void display7SEG(int num) {
  800014c:	b580      	push	{r7, lr}
  800014e:	b082      	sub	sp, #8
@@ -504,10 +504,6 @@ void display7SEG(int num) {
  8000454:	40010c00 	.word	0x40010c00
 
 08000458 <update7SEG>:
-int led_buffer[4] = {9, 7, 5, 3};
-int hour = 15;
-int minute = 8;
-int second = 50;
 
 void update7SEG(int index) {
  8000458:	b580      	push	{r7, lr}
@@ -647,7 +643,7 @@ void update7SEG(int index) {
  8000564:	bd80      	pop	{r7, pc}
  8000566:	bf00      	nop
  8000568:	40010800 	.word	0x40010800
- 800056c:	20000000 	.word	0x20000000
+ 800056c:	2000000c 	.word	0x2000000c
 
 08000570 <updateClockBuffer>:
 
@@ -751,10 +747,10 @@ void updateClockBuffer() {
  8000616:	46bd      	mov	sp, r7
  8000618:	bc80      	pop	{r7}
  800061a:	4770      	bx	lr
- 800061c:	20000010 	.word	0x20000010
- 8000620:	20000000 	.word	0x20000000
+ 800061c:	20000000 	.word	0x20000000
+ 8000620:	2000000c 	.word	0x2000000c
  8000624:	66666667 	.word	0x66666667
- 8000628:	20000014 	.word	0x20000014
+ 8000628:	20000004 	.word	0x20000004
 
 0800062c <main>:
 /**
@@ -886,9 +882,9 @@ int main(void)
  80006d4:	20000074 	.word	0x20000074
  80006d8:	200000bc 	.word	0x200000bc
  80006dc:	40010800 	.word	0x40010800
- 80006e0:	20000018 	.word	0x20000018
- 80006e4:	20000014 	.word	0x20000014
- 80006e8:	20000010 	.word	0x20000010
+ 80006e0:	20000008 	.word	0x20000008
+ 80006e4:	20000004 	.word	0x20000004
+ 80006e8:	20000000 	.word	0x20000000
 
 080006ec <SystemClock_Config>:
 /**
