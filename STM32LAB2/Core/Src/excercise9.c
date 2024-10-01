@@ -7,10 +7,12 @@
 #include "excercise9.h"
 
 int index_led_matrix = 0;
-uint8_t matrix_buffer[8] = {0x01, 0x02, 0x03, 0x04, 0x05, 0x06, 0x07, 0x08};
+//chữ A
+uint8_t matrix_buffer[8] = {0x18, 0x3C, 0x66, 0x66, 0x7E, 0x7E, 0x66, 0x66};
+//số 3
+//uint8_t matrix_buffer[8] = {0x7E, 0x7E, 0x06, 0x7E, 0x7E, 0x06, 0x7E, 0x7E};
 
 void displayLedMatrix(int row, int col) {
-	int shift = 1;
 	if (row == 0) {
 		HAL_GPIO_WritePin(GPIOB, GPIO_PIN_8, GPIO_PIN_RESET);
 		HAL_GPIO_WritePin(GPIOB, GPIO_PIN_9, GPIO_PIN_SET);
@@ -20,22 +22,6 @@ void displayLedMatrix(int row, int col) {
 		HAL_GPIO_WritePin(GPIOB, GPIO_PIN_13, GPIO_PIN_SET);
 		HAL_GPIO_WritePin(GPIOB, GPIO_PIN_14, GPIO_PIN_SET);
 		HAL_GPIO_WritePin(GPIOB, GPIO_PIN_15, GPIO_PIN_SET);
-
-		HAL_GPIO_WritePin(GPIOA, GPIO_PIN_15, 1 - (col & shift));
-		col = col >> 1;
-		HAL_GPIO_WritePin(GPIOA, GPIO_PIN_14, 1 - (col & shift));
-		col = col >> 1;
-		HAL_GPIO_WritePin(GPIOA, GPIO_PIN_13, 1 - (col & shift));
-		col = col >> 1;
-		HAL_GPIO_WritePin(GPIOA, GPIO_PIN_12, 1 - (col & shift));
-		col = col >> 1;
-		HAL_GPIO_WritePin(GPIOA, GPIO_PIN_11, 1 - (col & shift));
-		col = col >> 1;
-		HAL_GPIO_WritePin(GPIOA, GPIO_PIN_10, 1 - (col & shift));
-		col = col >> 1;
-		HAL_GPIO_WritePin(GPIOA, GPIO_PIN_3, 1 - (col & shift));
-		col = col >> 1;
-		HAL_GPIO_WritePin(GPIOA, GPIO_PIN_2, 1 - (col & shift));
 	}
 
 	if (row == 1) {
@@ -47,22 +33,6 @@ void displayLedMatrix(int row, int col) {
 		HAL_GPIO_WritePin(GPIOB, GPIO_PIN_13, GPIO_PIN_SET);
 		HAL_GPIO_WritePin(GPIOB, GPIO_PIN_14, GPIO_PIN_SET);
 		HAL_GPIO_WritePin(GPIOB, GPIO_PIN_15, GPIO_PIN_SET);
-
-		HAL_GPIO_WritePin(GPIOA, GPIO_PIN_15, 1 - (col & shift));
-		col = col >> 1;
-		HAL_GPIO_WritePin(GPIOA, GPIO_PIN_14, 1 - (col & shift));
-		col = col >> 1;
-		HAL_GPIO_WritePin(GPIOA, GPIO_PIN_13, 1 - (col & shift));
-		col = col >> 1;
-		HAL_GPIO_WritePin(GPIOA, GPIO_PIN_12, 1 - (col & shift));
-		col = col >> 1;
-		HAL_GPIO_WritePin(GPIOA, GPIO_PIN_11, 1 - (col & shift));
-		col = col >> 1;
-		HAL_GPIO_WritePin(GPIOA, GPIO_PIN_10, 1 - (col & shift));
-		col = col >> 1;
-		HAL_GPIO_WritePin(GPIOA, GPIO_PIN_3, 1 - (col & shift));
-		col = col >> 1;
-		HAL_GPIO_WritePin(GPIOA, GPIO_PIN_2, 1 - (col & shift));
 	}
 
 	if (row == 2) {
@@ -74,22 +44,6 @@ void displayLedMatrix(int row, int col) {
 		HAL_GPIO_WritePin(GPIOB, GPIO_PIN_13, GPIO_PIN_SET);
 		HAL_GPIO_WritePin(GPIOB, GPIO_PIN_14, GPIO_PIN_SET);
 		HAL_GPIO_WritePin(GPIOB, GPIO_PIN_15, GPIO_PIN_SET);
-
-		HAL_GPIO_WritePin(GPIOA, GPIO_PIN_15, 1 - (col & shift));
-		col = col >> 1;
-		HAL_GPIO_WritePin(GPIOA, GPIO_PIN_14, 1 - (col & shift));
-		col = col >> 1;
-		HAL_GPIO_WritePin(GPIOA, GPIO_PIN_13, 1 - (col & shift));
-		col = col >> 1;
-		HAL_GPIO_WritePin(GPIOA, GPIO_PIN_12, 1 - (col & shift));
-		col = col >> 1;
-		HAL_GPIO_WritePin(GPIOA, GPIO_PIN_11, 1 - (col & shift));
-		col = col >> 1;
-		HAL_GPIO_WritePin(GPIOA, GPIO_PIN_10, 1 - (col & shift));
-		col = col >> 1;
-		HAL_GPIO_WritePin(GPIOA, GPIO_PIN_3, 1 - (col & shift));
-		col = col >> 1;
-		HAL_GPIO_WritePin(GPIOA, GPIO_PIN_2, 1 - (col & shift));
 	}
 
 	if (row == 3) {
@@ -101,22 +55,6 @@ void displayLedMatrix(int row, int col) {
 		HAL_GPIO_WritePin(GPIOB, GPIO_PIN_13, GPIO_PIN_SET);
 		HAL_GPIO_WritePin(GPIOB, GPIO_PIN_14, GPIO_PIN_SET);
 		HAL_GPIO_WritePin(GPIOB, GPIO_PIN_15, GPIO_PIN_SET);
-
-		HAL_GPIO_WritePin(GPIOA, GPIO_PIN_15, 1 - (col & shift));
-		col = col >> 1;
-		HAL_GPIO_WritePin(GPIOA, GPIO_PIN_14, 1 - (col & shift));
-		col = col >> 1;
-		HAL_GPIO_WritePin(GPIOA, GPIO_PIN_13, 1 - (col & shift));
-		col = col >> 1;
-		HAL_GPIO_WritePin(GPIOA, GPIO_PIN_12, 1 - (col & shift));
-		col = col >> 1;
-		HAL_GPIO_WritePin(GPIOA, GPIO_PIN_11, 1 - (col & shift));
-		col = col >> 1;
-		HAL_GPIO_WritePin(GPIOA, GPIO_PIN_10, 1 - (col & shift));
-		col = col >> 1;
-		HAL_GPIO_WritePin(GPIOA, GPIO_PIN_3, 1 - (col & shift));
-		col = col >> 1;
-		HAL_GPIO_WritePin(GPIOA, GPIO_PIN_2, 1 - (col & shift));
 	}
 
 	if (row == 4) {
@@ -128,22 +66,6 @@ void displayLedMatrix(int row, int col) {
 		HAL_GPIO_WritePin(GPIOB, GPIO_PIN_13, GPIO_PIN_SET);
 		HAL_GPIO_WritePin(GPIOB, GPIO_PIN_14, GPIO_PIN_SET);
 		HAL_GPIO_WritePin(GPIOB, GPIO_PIN_15, GPIO_PIN_SET);
-
-		HAL_GPIO_WritePin(GPIOA, GPIO_PIN_15, 1 - (col & shift));
-		col = col >> 1;
-		HAL_GPIO_WritePin(GPIOA, GPIO_PIN_14, 1 - (col & shift));
-		col = col >> 1;
-		HAL_GPIO_WritePin(GPIOA, GPIO_PIN_13, 1 - (col & shift));
-		col = col >> 1;
-		HAL_GPIO_WritePin(GPIOA, GPIO_PIN_12, 1 - (col & shift));
-		col = col >> 1;
-		HAL_GPIO_WritePin(GPIOA, GPIO_PIN_11, 1 - (col & shift));
-		col = col >> 1;
-		HAL_GPIO_WritePin(GPIOA, GPIO_PIN_10, 1 - (col & shift));
-		col = col >> 1;
-		HAL_GPIO_WritePin(GPIOA, GPIO_PIN_3, 1 - (col & shift));
-		col = col >> 1;
-		HAL_GPIO_WritePin(GPIOA, GPIO_PIN_2, 1 - (col & shift));
 	}
 
 	if (row == 5) {
@@ -155,22 +77,6 @@ void displayLedMatrix(int row, int col) {
 		HAL_GPIO_WritePin(GPIOB, GPIO_PIN_13, GPIO_PIN_RESET);
 		HAL_GPIO_WritePin(GPIOB, GPIO_PIN_14, GPIO_PIN_SET);
 		HAL_GPIO_WritePin(GPIOB, GPIO_PIN_15, GPIO_PIN_SET);
-
-		HAL_GPIO_WritePin(GPIOA, GPIO_PIN_15, 1 - (col & shift));
-		col = col >> 1;
-		HAL_GPIO_WritePin(GPIOA, GPIO_PIN_14, 1 - (col & shift));
-		col = col >> 1;
-		HAL_GPIO_WritePin(GPIOA, GPIO_PIN_13, 1 - (col & shift));
-		col = col >> 1;
-		HAL_GPIO_WritePin(GPIOA, GPIO_PIN_12, 1 - (col & shift));
-		col = col >> 1;
-		HAL_GPIO_WritePin(GPIOA, GPIO_PIN_11, 1 - (col & shift));
-		col = col >> 1;
-		HAL_GPIO_WritePin(GPIOA, GPIO_PIN_10, 1 - (col & shift));
-		col = col >> 1;
-		HAL_GPIO_WritePin(GPIOA, GPIO_PIN_3, 1 - (col & shift));
-		col = col >> 1;
-		HAL_GPIO_WritePin(GPIOA, GPIO_PIN_2, 1 - (col & shift));
 	}
 
 	if (row == 6) {
@@ -182,22 +88,6 @@ void displayLedMatrix(int row, int col) {
 		HAL_GPIO_WritePin(GPIOB, GPIO_PIN_13, GPIO_PIN_SET);
 		HAL_GPIO_WritePin(GPIOB, GPIO_PIN_14, GPIO_PIN_RESET);
 		HAL_GPIO_WritePin(GPIOB, GPIO_PIN_15, GPIO_PIN_SET);
-
-		HAL_GPIO_WritePin(GPIOA, GPIO_PIN_15, 1 - (col & shift));
-		col = col >> 1;
-		HAL_GPIO_WritePin(GPIOA, GPIO_PIN_14, 1 - (col & shift));
-		col = col >> 1;
-		HAL_GPIO_WritePin(GPIOA, GPIO_PIN_13, 1 - (col & shift));
-		col = col >> 1;
-		HAL_GPIO_WritePin(GPIOA, GPIO_PIN_12, 1 - (col & shift));
-		col = col >> 1;
-		HAL_GPIO_WritePin(GPIOA, GPIO_PIN_11, 1 - (col & shift));
-		col = col >> 1;
-		HAL_GPIO_WritePin(GPIOA, GPIO_PIN_10, 1 - (col & shift));
-		col = col >> 1;
-		HAL_GPIO_WritePin(GPIOA, GPIO_PIN_3, 1 - (col & shift));
-		col = col >> 1;
-		HAL_GPIO_WritePin(GPIOA, GPIO_PIN_2, 1 - (col & shift));
 	}
 
 	if (row == 7) {
@@ -209,23 +99,23 @@ void displayLedMatrix(int row, int col) {
 		HAL_GPIO_WritePin(GPIOB, GPIO_PIN_13, GPIO_PIN_SET);
 		HAL_GPIO_WritePin(GPIOB, GPIO_PIN_14, GPIO_PIN_SET);
 		HAL_GPIO_WritePin(GPIOB, GPIO_PIN_15, GPIO_PIN_RESET);
-
-		HAL_GPIO_WritePin(GPIOA, GPIO_PIN_15, 1 - (col & shift));
-		col = col >> 1;
-		HAL_GPIO_WritePin(GPIOA, GPIO_PIN_14, 1 - (col & shift));
-		col = col >> 1;
-		HAL_GPIO_WritePin(GPIOA, GPIO_PIN_13, 1 - (col & shift));
-		col = col >> 1;
-		HAL_GPIO_WritePin(GPIOA, GPIO_PIN_12, 1 - (col & shift));
-		col = col >> 1;
-		HAL_GPIO_WritePin(GPIOA, GPIO_PIN_11, 1 - (col & shift));
-		col = col >> 1;
-		HAL_GPIO_WritePin(GPIOA, GPIO_PIN_10, 1 - (col & shift));
-		col = col >> 1;
-		HAL_GPIO_WritePin(GPIOA, GPIO_PIN_3, 1 - (col & shift));
-		col = col >> 1;
-		HAL_GPIO_WritePin(GPIOA, GPIO_PIN_2, 1 - (col & shift));
 	}
+
+    //mảng chứa trạng thái từng cột
+    int colBits[8];
+    //lấy từng bit từ col và lưu vào mảng
+    for (int i = 0; i < 8; ++i) {
+        colBits[i] = (col >> i) & 1;
+    }
+    //gán trạng thái cho từng cột
+    HAL_GPIO_WritePin(GPIOA, GPIO_PIN_2, 1 - colBits[7]);  // cột 0
+    HAL_GPIO_WritePin(GPIOA, GPIO_PIN_3, 1 - colBits[6]);  // cột 1
+    HAL_GPIO_WritePin(GPIOA, GPIO_PIN_10, 1 - colBits[5]); // cột 2
+    HAL_GPIO_WritePin(GPIOA, GPIO_PIN_11, 1 - colBits[4]); // cột 3
+    HAL_GPIO_WritePin(GPIOA, GPIO_PIN_12, 1 - colBits[3]); // cột 4
+    HAL_GPIO_WritePin(GPIOA, GPIO_PIN_13, 1 - colBits[2]); // cột 5
+    HAL_GPIO_WritePin(GPIOA, GPIO_PIN_14, 1 - colBits[1]); // cột 6
+    HAL_GPIO_WritePin(GPIOA, GPIO_PIN_15, 1 - colBits[0]); // cột 7
 }
 
 void updateLedMatrix(int index) {
