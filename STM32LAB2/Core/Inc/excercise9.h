@@ -10,15 +10,10 @@
 
 #include "main.h"
 
-int hour = 15;
-int minute = 8;
-int second = 50;
+extern int index_led_matrix;
+extern uint8_t matrix_buffer[];
 
-extern int index_led;
-extern int led_buffer[];
-
-void clock();
-void display7SEG(int num);
-void updateClockBuffer();
+void updateLedMatrix(int index);
+void displayLedMatrix(int row, int col);
 
 #endif /* INC_EXCERCISE9_H_ */

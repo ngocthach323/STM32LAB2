@@ -6,47 +6,256 @@
  */
 #include "excercise9.h"
 
-//tang thoi gian dong ho
-void clock() {
-	second++;
-	if (second >= 60) {
-		minute++;
-		second = 0;
+int index_led_matrix = 0;
+uint8_t matrix_buffer[8] = {0x01, 0x02, 0x03, 0x04, 0x05, 0x06, 0x07, 0x08};
+
+void displayLedMatrix(int row, int col) {
+	int shift = 1;
+	if (row == 0) {
+		HAL_GPIO_WritePin(GPIOB, GPIO_PIN_8, GPIO_PIN_RESET);
+		HAL_GPIO_WritePin(GPIOB, GPIO_PIN_9, GPIO_PIN_SET);
+		HAL_GPIO_WritePin(GPIOB, GPIO_PIN_10, GPIO_PIN_SET);
+		HAL_GPIO_WritePin(GPIOB, GPIO_PIN_11, GPIO_PIN_SET);
+		HAL_GPIO_WritePin(GPIOB, GPIO_PIN_12, GPIO_PIN_SET);
+		HAL_GPIO_WritePin(GPIOB, GPIO_PIN_13, GPIO_PIN_SET);
+		HAL_GPIO_WritePin(GPIOB, GPIO_PIN_14, GPIO_PIN_SET);
+		HAL_GPIO_WritePin(GPIOB, GPIO_PIN_15, GPIO_PIN_SET);
+
+		HAL_GPIO_WritePin(GPIOA, GPIO_PIN_15, 1 - (col & shift));
+		col = col >> 1;
+		HAL_GPIO_WritePin(GPIOA, GPIO_PIN_14, 1 - (col & shift));
+		col = col >> 1;
+		HAL_GPIO_WritePin(GPIOA, GPIO_PIN_13, 1 - (col & shift));
+		col = col >> 1;
+		HAL_GPIO_WritePin(GPIOA, GPIO_PIN_12, 1 - (col & shift));
+		col = col >> 1;
+		HAL_GPIO_WritePin(GPIOA, GPIO_PIN_11, 1 - (col & shift));
+		col = col >> 1;
+		HAL_GPIO_WritePin(GPIOA, GPIO_PIN_10, 1 - (col & shift));
+		col = col >> 1;
+		HAL_GPIO_WritePin(GPIOA, GPIO_PIN_3, 1 - (col & shift));
+		col = col >> 1;
+		HAL_GPIO_WritePin(GPIOA, GPIO_PIN_2, 1 - (col & shift));
 	}
-	if (minute >= 60) {
-		hour++;
-		minute = 0;
+
+	if (row == 1) {
+		HAL_GPIO_WritePin(GPIOB, GPIO_PIN_8, GPIO_PIN_SET);
+		HAL_GPIO_WritePin(GPIOB, GPIO_PIN_9, GPIO_PIN_RESET);
+		HAL_GPIO_WritePin(GPIOB, GPIO_PIN_10, GPIO_PIN_SET);
+		HAL_GPIO_WritePin(GPIOB, GPIO_PIN_11, GPIO_PIN_SET);
+		HAL_GPIO_WritePin(GPIOB, GPIO_PIN_12, GPIO_PIN_SET);
+		HAL_GPIO_WritePin(GPIOB, GPIO_PIN_13, GPIO_PIN_SET);
+		HAL_GPIO_WritePin(GPIOB, GPIO_PIN_14, GPIO_PIN_SET);
+		HAL_GPIO_WritePin(GPIOB, GPIO_PIN_15, GPIO_PIN_SET);
+
+		HAL_GPIO_WritePin(GPIOA, GPIO_PIN_15, 1 - (col & shift));
+		col = col >> 1;
+		HAL_GPIO_WritePin(GPIOA, GPIO_PIN_14, 1 - (col & shift));
+		col = col >> 1;
+		HAL_GPIO_WritePin(GPIOA, GPIO_PIN_13, 1 - (col & shift));
+		col = col >> 1;
+		HAL_GPIO_WritePin(GPIOA, GPIO_PIN_12, 1 - (col & shift));
+		col = col >> 1;
+		HAL_GPIO_WritePin(GPIOA, GPIO_PIN_11, 1 - (col & shift));
+		col = col >> 1;
+		HAL_GPIO_WritePin(GPIOA, GPIO_PIN_10, 1 - (col & shift));
+		col = col >> 1;
+		HAL_GPIO_WritePin(GPIOA, GPIO_PIN_3, 1 - (col & shift));
+		col = col >> 1;
+		HAL_GPIO_WritePin(GPIOA, GPIO_PIN_2, 1 - (col & shift));
 	}
-	if (hour >= 24) {
-		hour = 0;
+
+	if (row == 2) {
+		HAL_GPIO_WritePin(GPIOB, GPIO_PIN_8, GPIO_PIN_SET);
+		HAL_GPIO_WritePin(GPIOB, GPIO_PIN_9, GPIO_PIN_SET);
+		HAL_GPIO_WritePin(GPIOB, GPIO_PIN_10, GPIO_PIN_RESET);
+		HAL_GPIO_WritePin(GPIOB, GPIO_PIN_11, GPIO_PIN_SET);
+		HAL_GPIO_WritePin(GPIOB, GPIO_PIN_12, GPIO_PIN_SET);
+		HAL_GPIO_WritePin(GPIOB, GPIO_PIN_13, GPIO_PIN_SET);
+		HAL_GPIO_WritePin(GPIOB, GPIO_PIN_14, GPIO_PIN_SET);
+		HAL_GPIO_WritePin(GPIOB, GPIO_PIN_15, GPIO_PIN_SET);
+
+		HAL_GPIO_WritePin(GPIOA, GPIO_PIN_15, 1 - (col & shift));
+		col = col >> 1;
+		HAL_GPIO_WritePin(GPIOA, GPIO_PIN_14, 1 - (col & shift));
+		col = col >> 1;
+		HAL_GPIO_WritePin(GPIOA, GPIO_PIN_13, 1 - (col & shift));
+		col = col >> 1;
+		HAL_GPIO_WritePin(GPIOA, GPIO_PIN_12, 1 - (col & shift));
+		col = col >> 1;
+		HAL_GPIO_WritePin(GPIOA, GPIO_PIN_11, 1 - (col & shift));
+		col = col >> 1;
+		HAL_GPIO_WritePin(GPIOA, GPIO_PIN_10, 1 - (col & shift));
+		col = col >> 1;
+		HAL_GPIO_WritePin(GPIOA, GPIO_PIN_3, 1 - (col & shift));
+		col = col >> 1;
+		HAL_GPIO_WritePin(GPIOA, GPIO_PIN_2, 1 - (col & shift));
+	}
+
+	if (row == 3) {
+		HAL_GPIO_WritePin(GPIOB, GPIO_PIN_8, GPIO_PIN_SET);
+		HAL_GPIO_WritePin(GPIOB, GPIO_PIN_9, GPIO_PIN_SET);
+		HAL_GPIO_WritePin(GPIOB, GPIO_PIN_10, GPIO_PIN_SET);
+		HAL_GPIO_WritePin(GPIOB, GPIO_PIN_11, GPIO_PIN_RESET);
+		HAL_GPIO_WritePin(GPIOB, GPIO_PIN_12, GPIO_PIN_SET);
+		HAL_GPIO_WritePin(GPIOB, GPIO_PIN_13, GPIO_PIN_SET);
+		HAL_GPIO_WritePin(GPIOB, GPIO_PIN_14, GPIO_PIN_SET);
+		HAL_GPIO_WritePin(GPIOB, GPIO_PIN_15, GPIO_PIN_SET);
+
+		HAL_GPIO_WritePin(GPIOA, GPIO_PIN_15, 1 - (col & shift));
+		col = col >> 1;
+		HAL_GPIO_WritePin(GPIOA, GPIO_PIN_14, 1 - (col & shift));
+		col = col >> 1;
+		HAL_GPIO_WritePin(GPIOA, GPIO_PIN_13, 1 - (col & shift));
+		col = col >> 1;
+		HAL_GPIO_WritePin(GPIOA, GPIO_PIN_12, 1 - (col & shift));
+		col = col >> 1;
+		HAL_GPIO_WritePin(GPIOA, GPIO_PIN_11, 1 - (col & shift));
+		col = col >> 1;
+		HAL_GPIO_WritePin(GPIOA, GPIO_PIN_10, 1 - (col & shift));
+		col = col >> 1;
+		HAL_GPIO_WritePin(GPIOA, GPIO_PIN_3, 1 - (col & shift));
+		col = col >> 1;
+		HAL_GPIO_WritePin(GPIOA, GPIO_PIN_2, 1 - (col & shift));
+	}
+
+	if (row == 4) {
+		HAL_GPIO_WritePin(GPIOB, GPIO_PIN_8, GPIO_PIN_SET);
+		HAL_GPIO_WritePin(GPIOB, GPIO_PIN_9, GPIO_PIN_SET);
+		HAL_GPIO_WritePin(GPIOB, GPIO_PIN_10, GPIO_PIN_SET);
+		HAL_GPIO_WritePin(GPIOB, GPIO_PIN_11, GPIO_PIN_SET);
+		HAL_GPIO_WritePin(GPIOB, GPIO_PIN_12, GPIO_PIN_RESET);
+		HAL_GPIO_WritePin(GPIOB, GPIO_PIN_13, GPIO_PIN_SET);
+		HAL_GPIO_WritePin(GPIOB, GPIO_PIN_14, GPIO_PIN_SET);
+		HAL_GPIO_WritePin(GPIOB, GPIO_PIN_15, GPIO_PIN_SET);
+
+		HAL_GPIO_WritePin(GPIOA, GPIO_PIN_15, 1 - (col & shift));
+		col = col >> 1;
+		HAL_GPIO_WritePin(GPIOA, GPIO_PIN_14, 1 - (col & shift));
+		col = col >> 1;
+		HAL_GPIO_WritePin(GPIOA, GPIO_PIN_13, 1 - (col & shift));
+		col = col >> 1;
+		HAL_GPIO_WritePin(GPIOA, GPIO_PIN_12, 1 - (col & shift));
+		col = col >> 1;
+		HAL_GPIO_WritePin(GPIOA, GPIO_PIN_11, 1 - (col & shift));
+		col = col >> 1;
+		HAL_GPIO_WritePin(GPIOA, GPIO_PIN_10, 1 - (col & shift));
+		col = col >> 1;
+		HAL_GPIO_WritePin(GPIOA, GPIO_PIN_3, 1 - (col & shift));
+		col = col >> 1;
+		HAL_GPIO_WritePin(GPIOA, GPIO_PIN_2, 1 - (col & shift));
+	}
+
+	if (row == 5) {
+		HAL_GPIO_WritePin(GPIOB, GPIO_PIN_8, GPIO_PIN_SET);
+		HAL_GPIO_WritePin(GPIOB, GPIO_PIN_9, GPIO_PIN_SET);
+		HAL_GPIO_WritePin(GPIOB, GPIO_PIN_10, GPIO_PIN_SET);
+		HAL_GPIO_WritePin(GPIOB, GPIO_PIN_11, GPIO_PIN_SET);
+		HAL_GPIO_WritePin(GPIOB, GPIO_PIN_12, GPIO_PIN_SET);
+		HAL_GPIO_WritePin(GPIOB, GPIO_PIN_13, GPIO_PIN_RESET);
+		HAL_GPIO_WritePin(GPIOB, GPIO_PIN_14, GPIO_PIN_SET);
+		HAL_GPIO_WritePin(GPIOB, GPIO_PIN_15, GPIO_PIN_SET);
+
+		HAL_GPIO_WritePin(GPIOA, GPIO_PIN_15, 1 - (col & shift));
+		col = col >> 1;
+		HAL_GPIO_WritePin(GPIOA, GPIO_PIN_14, 1 - (col & shift));
+		col = col >> 1;
+		HAL_GPIO_WritePin(GPIOA, GPIO_PIN_13, 1 - (col & shift));
+		col = col >> 1;
+		HAL_GPIO_WritePin(GPIOA, GPIO_PIN_12, 1 - (col & shift));
+		col = col >> 1;
+		HAL_GPIO_WritePin(GPIOA, GPIO_PIN_11, 1 - (col & shift));
+		col = col >> 1;
+		HAL_GPIO_WritePin(GPIOA, GPIO_PIN_10, 1 - (col & shift));
+		col = col >> 1;
+		HAL_GPIO_WritePin(GPIOA, GPIO_PIN_3, 1 - (col & shift));
+		col = col >> 1;
+		HAL_GPIO_WritePin(GPIOA, GPIO_PIN_2, 1 - (col & shift));
+	}
+
+	if (row == 6) {
+		HAL_GPIO_WritePin(GPIOB, GPIO_PIN_8, GPIO_PIN_SET);
+		HAL_GPIO_WritePin(GPIOB, GPIO_PIN_9, GPIO_PIN_SET);
+		HAL_GPIO_WritePin(GPIOB, GPIO_PIN_10, GPIO_PIN_SET);
+		HAL_GPIO_WritePin(GPIOB, GPIO_PIN_11, GPIO_PIN_SET);
+		HAL_GPIO_WritePin(GPIOB, GPIO_PIN_12, GPIO_PIN_SET);
+		HAL_GPIO_WritePin(GPIOB, GPIO_PIN_13, GPIO_PIN_SET);
+		HAL_GPIO_WritePin(GPIOB, GPIO_PIN_14, GPIO_PIN_RESET);
+		HAL_GPIO_WritePin(GPIOB, GPIO_PIN_15, GPIO_PIN_SET);
+
+		HAL_GPIO_WritePin(GPIOA, GPIO_PIN_15, 1 - (col & shift));
+		col = col >> 1;
+		HAL_GPIO_WritePin(GPIOA, GPIO_PIN_14, 1 - (col & shift));
+		col = col >> 1;
+		HAL_GPIO_WritePin(GPIOA, GPIO_PIN_13, 1 - (col & shift));
+		col = col >> 1;
+		HAL_GPIO_WritePin(GPIOA, GPIO_PIN_12, 1 - (col & shift));
+		col = col >> 1;
+		HAL_GPIO_WritePin(GPIOA, GPIO_PIN_11, 1 - (col & shift));
+		col = col >> 1;
+		HAL_GPIO_WritePin(GPIOA, GPIO_PIN_10, 1 - (col & shift));
+		col = col >> 1;
+		HAL_GPIO_WritePin(GPIOA, GPIO_PIN_3, 1 - (col & shift));
+		col = col >> 1;
+		HAL_GPIO_WritePin(GPIOA, GPIO_PIN_2, 1 - (col & shift));
+	}
+
+	if (row == 7) {
+		HAL_GPIO_WritePin(GPIOB, GPIO_PIN_8, GPIO_PIN_SET);
+		HAL_GPIO_WritePin(GPIOB, GPIO_PIN_9, GPIO_PIN_SET);
+		HAL_GPIO_WritePin(GPIOB, GPIO_PIN_10, GPIO_PIN_SET);
+		HAL_GPIO_WritePin(GPIOB, GPIO_PIN_11, GPIO_PIN_SET);
+		HAL_GPIO_WritePin(GPIOB, GPIO_PIN_12, GPIO_PIN_SET);
+		HAL_GPIO_WritePin(GPIOB, GPIO_PIN_13, GPIO_PIN_SET);
+		HAL_GPIO_WritePin(GPIOB, GPIO_PIN_14, GPIO_PIN_SET);
+		HAL_GPIO_WritePin(GPIOB, GPIO_PIN_15, GPIO_PIN_RESET);
+
+		HAL_GPIO_WritePin(GPIOA, GPIO_PIN_15, 1 - (col & shift));
+		col = col >> 1;
+		HAL_GPIO_WritePin(GPIOA, GPIO_PIN_14, 1 - (col & shift));
+		col = col >> 1;
+		HAL_GPIO_WritePin(GPIOA, GPIO_PIN_13, 1 - (col & shift));
+		col = col >> 1;
+		HAL_GPIO_WritePin(GPIOA, GPIO_PIN_12, 1 - (col & shift));
+		col = col >> 1;
+		HAL_GPIO_WritePin(GPIOA, GPIO_PIN_11, 1 - (col & shift));
+		col = col >> 1;
+		HAL_GPIO_WritePin(GPIOA, GPIO_PIN_10, 1 - (col & shift));
+		col = col >> 1;
+		HAL_GPIO_WritePin(GPIOA, GPIO_PIN_3, 1 - (col & shift));
+		col = col >> 1;
+		HAL_GPIO_WritePin(GPIOA, GPIO_PIN_2, 1 - (col & shift));
 	}
 }
 
-//led 7 doan
-void display7SEG(int num) {
-
-}
-
-//hien thi gio phut tren 4 led 7 doan
-int index_led = 0;
-int led_buffer[4] = {9, 7, 5, 3};
-
-void updateClockBuffer() {
-	if (hour < 10) {
-		led_buffer[0] = 0;
-		led_buffer[1] = hour;
-	}
-	if (hour >= 10) {
-		led_buffer[0] = hour / 10;
-		led_buffer[1] = hour % 10;
-	}
-	if (minute < 10) {
-		led_buffer[2] = 0;
-		led_buffer[3] = minute;
-	}
-	if (minute >= 10) {
-		led_buffer[2] = minute / 10;
-		led_buffer[3] = minute % 10;
+void updateLedMatrix(int index) {
+	switch (index) {
+		case 0:
+			displayLedMatrix(0, matrix_buffer[0]);
+			break;
+		case 1:
+			displayLedMatrix(1, matrix_buffer[1]);
+			break;
+		case 2:
+			displayLedMatrix(2, matrix_buffer[2]);
+			break;
+		case 3:
+			displayLedMatrix(3, matrix_buffer[3]);
+			break;
+		case 4:
+			displayLedMatrix(4, matrix_buffer[4]);
+			break;
+		case 5:
+			displayLedMatrix(5, matrix_buffer[5]);
+			break;
+		case 6:
+			displayLedMatrix(6, matrix_buffer[6]);
+			break;
+		case 7:
+			displayLedMatrix(7, matrix_buffer[7]);
+			break;
+		default:
+			break;
 	}
 }
 

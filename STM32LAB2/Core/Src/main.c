@@ -23,6 +23,7 @@
 /* Private includes ----------------------------------------------------------*/
 /* USER CODE BEGIN Includes */
 #include "software_timer.h"
+#include "excercise9.h"
 /* USER CODE END Includes */
 
 /* Private typedef -----------------------------------------------------------*/
@@ -94,10 +95,17 @@ int main(void)
 
   /* Infinite loop */
   /* USER CODE BEGIN WHILE */
+  setTimer(0, 100);
   while (1)
   {
     /* USER CODE END WHILE */
-
+	  if (timer_flag[0] == 1) {
+		  updateLedMatrix(index_led_matrix++);
+		  if (index_led_matrix == 8) {
+			  index_led_matrix = 0;
+		  }
+		  setTimer(0, 100);
+	  }
     /* USER CODE BEGIN 3 */
   }
   /* USER CODE END 3 */
