@@ -6,6 +6,10 @@
  */
 #include <excercise8.h>
 
+int hour = 15;
+int minute = 8;
+int second = 50;
+int index_led = 0;
 int led_buffer[4] = {9, 3, 7, 5};
 
 void display7SEG(int num) {
@@ -110,8 +114,8 @@ void display7SEG(int num) {
 	}
 }
 
-void update7SEG(int *index) {
-	switch (*index) {
+void update7SEG(int index) {
+	switch (index) {
 		case 0:
 			HAL_GPIO_WritePin(GPIOA, GPIO_PIN_6, GPIO_PIN_RESET);
 			HAL_GPIO_WritePin(GPIOA, GPIO_PIN_7, GPIO_PIN_SET);
@@ -145,22 +149,22 @@ void update7SEG(int *index) {
 	}
 }
 
-void updateClockBuffer(int *hour, int *minute) {
-	if (*hour < 10) {
+void updateClockBuffer() {
+	if (hour < 10) {
 		led_buffer[0] = 0;
-		led_buffer[1] = *hour;
+		led_buffer[1] = hour;
 	}
-	if (*hour >= 10) {
-		led_buffer[0] = *hour / 10;
-		led_buffer[1] = *hour % 10;
+	if (hour >= 10) {
+		led_buffer[0] = hour / 10;
+		led_buffer[1] = hour % 10;
 	}
-	if (*minute < 10) {
+	if (minute < 10) {
 		led_buffer[2] = 0;
-		led_buffer[3] = *minute;
+		led_buffer[3] = minute;
 	}
-	if (*minute >= 10) {
-		led_buffer[2] = *minute / 10;
-		led_buffer[3] = *minute % 10;
+	if (minute >= 10) {
+		led_buffer[2] = minute / 10;
+		led_buffer[3] = minute % 10;
 	}
 }
 
