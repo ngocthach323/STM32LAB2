@@ -147,6 +147,10 @@ int main(void)
 
 	  if (timer_flag[1] == 1) {
 		  run_7SEG(status);
+		  status++;
+		  if (status == 4) {
+			  status = 0;
+		  }
 		  setTimer(1, 500);
 	  }
     /* USER CODE BEGIN 3 */
