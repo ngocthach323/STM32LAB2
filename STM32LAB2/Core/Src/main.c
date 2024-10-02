@@ -248,14 +248,14 @@ static void MX_GPIO_Init(void)
 }
 
 /* USER CODE BEGIN 4 */
-int count = 25;
+int count = 250;
 void HAL_TIM_PeriodElapsedCallback(TIM_HandleTypeDef *htim) {
 	timerRun();
 	if (count > 0) {
 		count--;
 	}
 	if (count <= 0) {
-		count = 25;
+		count = 250;
 		update7SEG(index_led);
 		index_led++;
 	}
