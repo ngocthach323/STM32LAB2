@@ -149,6 +149,21 @@ void update7SEG(int index) {
 	}
 }
 
+void clock() {
+	 second++;
+	 if (second >= 60) {
+		 second = 0;
+		 minute++;
+	 }
+	 if (minute >= 60) {
+		 minute = 0;
+		 hour++;
+	 }
+	 if (hour >= 24) {
+		 hour = 0;
+	 }
+}
+
 void updateClockBuffer() {
 	if (hour < 10) {
 		led_buffer[0] = 0;

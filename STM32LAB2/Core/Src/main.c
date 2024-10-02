@@ -107,18 +107,7 @@ int main(void)
 	  }
 
 	  if (timer_flag[1] == 1) {
-		  second++;
-		  if (second >= 60) {
-			  second = 0;
-			  minute++;
-		  }
-		  if (minute >= 60) {
-			  minute = 0;
-			  hour++;
-		  }
-		  if (hour >= 24) {
-			  hour = 0;
-		  }
+		  clock();
 		  updateClockBuffer();
 
 		  if (timer_flag[2] == 1) {

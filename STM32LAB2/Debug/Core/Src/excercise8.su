@@ -1,3 +1,4 @@
 excercise8.c:15:6:display7SEG	16	static
 excercise8.c:117:6:update7SEG	16	static
-excercise8.c:152:6:updateClockBuffer	4	static
+excercise8.c:152:6:clock	4	static
+excercise8.c:167:6:updateClockBuffer	4	static
