@@ -37,13 +37,13 @@ Idx Name          Size      VMA       LMA       File off  Algn
                   CONTENTS, READONLY, DEBUGGING, OCTETS
  16 .debug_macro  00016567  00000000  00000000  0002b438  2**0
                   CONTENTS, READONLY, DEBUGGING, OCTETS
- 17 .debug_line   0000a197  00000000  00000000  0004199f  2**0
+ 17 .debug_line   0000a195  00000000  00000000  0004199f  2**0
                   CONTENTS, READONLY, DEBUGGING, OCTETS
- 18 .debug_str    00081e14  00000000  00000000  0004bb36  2**0
+ 18 .debug_str    00081e14  00000000  00000000  0004bb34  2**0
                   CONTENTS, READONLY, DEBUGGING, OCTETS
- 19 .comment      00000053  00000000  00000000  000cd94a  2**0
+ 19 .comment      00000053  00000000  00000000  000cd948  2**0
                   CONTENTS, READONLY
- 20 .debug_frame  000026c0  00000000  00000000  000cd9a0  2**2
+ 20 .debug_frame  000026c0  00000000  00000000  000cd99c  2**2
                   CONTENTS, READONLY, DEBUGGING, OCTETS
 
 Disassembly of section .text:
@@ -888,47 +888,46 @@ int main(void)
  80006dc:	4b14      	ldr	r3, [pc, #80]	; (8000730 <main+0xa4>)
  80006de:	685b      	ldr	r3, [r3, #4]
  80006e0:	2b01      	cmp	r3, #1
- 80006e2:	d1ee      	bne.n	80006c2 <main+0x36>
+ 80006e2:	d108      	bne.n	80006f6 <main+0x6a>
 		  clock();
  80006e4:	f7ff ff44 	bl	8000570 <clock>
 		  updateClockBuffer();
  80006e8:	f7ff ff72 	bl	80005d0 <updateClockBuffer>
+		  setTimer(1, 1000);
+ 80006ec:	f44f 717a 	mov.w	r1, #1000	; 0x3e8
+ 80006f0:	2001      	movs	r0, #1
+ 80006f2:	f000 f90f 	bl	8000914 <setTimer>
+	  }
 
-		  if (timer_flag[2] == 1) {
- 80006ec:	4b10      	ldr	r3, [pc, #64]	; (8000730 <main+0xa4>)
- 80006ee:	689b      	ldr	r3, [r3, #8]
- 80006f0:	2b01      	cmp	r3, #1
- 80006f2:	d114      	bne.n	800071e <main+0x92>
-			  update7SEG(index_led);
- 80006f4:	4b10      	ldr	r3, [pc, #64]	; (8000738 <main+0xac>)
- 80006f6:	681b      	ldr	r3, [r3, #0]
- 80006f8:	4618      	mov	r0, r3
- 80006fa:	f7ff fead 	bl	8000458 <update7SEG>
-			  index_led++;
+	  if (timer_flag[2] == 1) {
+ 80006f6:	4b0e      	ldr	r3, [pc, #56]	; (8000730 <main+0xa4>)
+ 80006f8:	689b      	ldr	r3, [r3, #8]
+ 80006fa:	2b01      	cmp	r3, #1
+ 80006fc:	d1e1      	bne.n	80006c2 <main+0x36>
+		  update7SEG(index_led);
  80006fe:	4b0e      	ldr	r3, [pc, #56]	; (8000738 <main+0xac>)
  8000700:	681b      	ldr	r3, [r3, #0]
- 8000702:	3301      	adds	r3, #1
- 8000704:	4a0c      	ldr	r2, [pc, #48]	; (8000738 <main+0xac>)
- 8000706:	6013      	str	r3, [r2, #0]
-			  if (index_led == 4) {
+ 8000702:	4618      	mov	r0, r3
+ 8000704:	f7ff fea8 	bl	8000458 <update7SEG>
+		  index_led++;
  8000708:	4b0b      	ldr	r3, [pc, #44]	; (8000738 <main+0xac>)
  800070a:	681b      	ldr	r3, [r3, #0]
- 800070c:	2b04      	cmp	r3, #4
- 800070e:	d102      	bne.n	8000716 <main+0x8a>
-				  index_led = 0;
- 8000710:	4b09      	ldr	r3, [pc, #36]	; (8000738 <main+0xac>)
- 8000712:	2200      	movs	r2, #0
- 8000714:	601a      	str	r2, [r3, #0]
-			  }
-			  setTimer(2, 250);
- 8000716:	21fa      	movs	r1, #250	; 0xfa
- 8000718:	2002      	movs	r0, #2
- 800071a:	f000 f8fb 	bl	8000914 <setTimer>
+ 800070c:	3301      	adds	r3, #1
+ 800070e:	4a0a      	ldr	r2, [pc, #40]	; (8000738 <main+0xac>)
+ 8000710:	6013      	str	r3, [r2, #0]
+		  if (index_led == 4) {
+ 8000712:	4b09      	ldr	r3, [pc, #36]	; (8000738 <main+0xac>)
+ 8000714:	681b      	ldr	r3, [r3, #0]
+ 8000716:	2b04      	cmp	r3, #4
+ 8000718:	d102      	bne.n	8000720 <main+0x94>
+			  index_led = 0;
+ 800071a:	4b07      	ldr	r3, [pc, #28]	; (8000738 <main+0xac>)
+ 800071c:	2200      	movs	r2, #0
+ 800071e:	601a      	str	r2, [r3, #0]
 		  }
-
-		  setTimer(1, 1000);
- 800071e:	f44f 717a 	mov.w	r1, #1000	; 0x3e8
- 8000722:	2001      	movs	r0, #1
+		  setTimer(2, 250);
+ 8000720:	21fa      	movs	r1, #250	; 0xfa
+ 8000722:	2002      	movs	r0, #2
  8000724:	f000 f8f6 	bl	8000914 <setTimer>
 	  if (timer_flag[0] == 1) {
  8000728:	e7cb      	b.n	80006c2 <main+0x36>

@@ -109,17 +109,16 @@ int main(void)
 	  if (timer_flag[1] == 1) {
 		  clock();
 		  updateClockBuffer();
-
-		  if (timer_flag[2] == 1) {
-			  update7SEG(index_led);
-			  index_led++;
-			  if (index_led == 4) {
-				  index_led = 0;
-			  }
-			  setTimer(2, 250);
-		  }
-
 		  setTimer(1, 1000);
+	  }
+
+	  if (timer_flag[2] == 1) {
+		  update7SEG(index_led);
+		  index_led++;
+		  if (index_led == 4) {
+			  index_led = 0;
+		  }
+		  setTimer(2, 250);
 	  }
     /* USER CODE BEGIN 3 */
   }
