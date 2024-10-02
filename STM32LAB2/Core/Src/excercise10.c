@@ -8,7 +8,8 @@
 
 int index_led_matrix = 0;
 
-uint8_t matrix_buffer[8] = {0x01, 0x02, 0x03, 0x04, 0x05, 0x06, 0x07, 0x08};
+//mũi tên đứng
+uint8_t matrix_buffer[8] = {0x08, 0x1C, 0x3E, 0x7F, 0x1C, 0x1C, 0x1C, 0x00};
 
 void displayLedMatrix(int row, int col) {
 	if (row == 0) {
@@ -100,20 +101,20 @@ void displayLedMatrix(int row, int col) {
 	}
 
     //mảng chứa trạng thái từng cột
-    int colBits[8];
+    int rowBits[8];
     //lấy từng bit từ col và lưu vào mảng
     for (int i = 0; i < 8; ++i) {
-        colBits[i] = (col >> i) & 1;
+        rowBits[i] = (col >> i) & 1;
     }
     //gán trạng thái cho từng cột
-    HAL_GPIO_WritePin(GPIOA, GPIO_PIN_2, 1 - colBits[7]);  // cột 0
-    HAL_GPIO_WritePin(GPIOA, GPIO_PIN_3, 1 - colBits[6]);  // cột 1
-    HAL_GPIO_WritePin(GPIOA, GPIO_PIN_10, 1 - colBits[5]); // cột 2
-    HAL_GPIO_WritePin(GPIOA, GPIO_PIN_11, 1 - colBits[4]); // cột 3
-    HAL_GPIO_WritePin(GPIOA, GPIO_PIN_12, 1 - colBits[3]); // cột 4
-    HAL_GPIO_WritePin(GPIOA, GPIO_PIN_13, 1 - colBits[2]); // cột 5
-    HAL_GPIO_WritePin(GPIOA, GPIO_PIN_14, 1 - colBits[1]); // cột 6
-    HAL_GPIO_WritePin(GPIOA, GPIO_PIN_15, 1 - colBits[0]); // cột 7
+    HAL_GPIO_WritePin(GPIOA, GPIO_PIN_2, 1 - rowBits[7]);  // cột 0
+    HAL_GPIO_WritePin(GPIOA, GPIO_PIN_3, 1 - rowBits[6]);  // cột 1
+    HAL_GPIO_WritePin(GPIOA, GPIO_PIN_10, 1 - rowBits[5]); // cột 2
+    HAL_GPIO_WritePin(GPIOA, GPIO_PIN_11, 1 - rowBits[4]); // cột 3
+    HAL_GPIO_WritePin(GPIOA, GPIO_PIN_12, 1 - rowBits[3]); // cột 4
+    HAL_GPIO_WritePin(GPIOA, GPIO_PIN_13, 1 - rowBits[2]); // cột 5
+    HAL_GPIO_WritePin(GPIOA, GPIO_PIN_14, 1 - rowBits[1]); // cột 6
+    HAL_GPIO_WritePin(GPIOA, GPIO_PIN_15, 1 - rowBits[0]); // cột 7
 }
 
 void updateLedMatrix(int index) {
@@ -147,15 +148,11 @@ void updateLedMatrix(int index) {
 	}
 }
 
-void updateMatrix_buffer(){
-	// shift bit of every buffer from right to left
-	matrix_buffer[0] = (matrix_buffer[0] << 1) | (matrix_buffer[0] >> 7);
-	matrix_buffer[1] = (matrix_buffer[1] << 1) | (matrix_buffer[1] >> 7);
-	matrix_buffer[2] = (matrix_buffer[2] << 1) | (matrix_buffer[2] >> 7);
-	matrix_buffer[3] = (matrix_buffer[3] << 1) | (matrix_buffer[3] >> 7);
-	matrix_buffer[4] = (matrix_buffer[4] << 1) | (matrix_buffer[4] >> 7);
-	matrix_buffer[5] = (matrix_buffer[5] << 1) | (matrix_buffer[5] >> 7);
-	matrix_buffer[6] = (matrix_buffer[6] << 1) | (matrix_buffer[6] >> 7);
-	matrix_buffer[7] = (matrix_buffer[7] << 1) | (matrix_buffer[7] >> 7);
+//dịch bit từ phải sang trái
+void updateLedMatrixBuffer(){
+	for (int i = 0; i < 8; i++) {
+		matrix_buffer[i] = (matrix_buffer[i] << 1) | (matrix_buffer[i] >> 7);
+	}
 }
+
 

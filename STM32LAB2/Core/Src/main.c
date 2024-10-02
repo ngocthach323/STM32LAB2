@@ -96,7 +96,7 @@ int main(void)
   /* Infinite loop */
   /* USER CODE BEGIN WHILE */
   setTimer(0, 100);
-  setTimer(1, 1000);
+  setTimer(1, 800);
   while (1)
   {
     /* USER CODE END WHILE */
@@ -109,8 +109,8 @@ int main(void)
 		  setTimer(0, 100);
 	  }
 	  if (timer_flag[1] == 1) {
-		  updateMatrix_buffer();
-		  setTimer(1, 1000);
+		  updateLedMatrixBuffer();
+		  setTimer(1, 800);
 	  }
     /* USER CODE BEGIN 3 */
   }

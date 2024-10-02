@@ -14,6 +14,6 @@ extern int index_led_matrix;
 
 void displayLedMatrix(int row, int col);
 void updateLedMatrix(int index);
-void updateMatrix_buffer();
+void updateLedMatrixBuffer();
 
 #endif /* INC_EXCERCISE10_H_ */
