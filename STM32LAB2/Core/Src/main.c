@@ -95,14 +95,14 @@ int main(void)
 
   /* Infinite loop */
   /* USER CODE BEGIN WHILE */
-//  setTimer(0, 1000);
+//  setTimer(0, 500);
   while (1)
   {
     /* USER CODE END WHILE */
 //	  if (timer_flag[0] == 1) {
 //		  run_excercise1(status);
 //		  status = 1 - status;
-//		  setTimer(0, 1000);
+//		  setTimer(0, 500);
 //	  }
 
     /* USER CODE BEGIN 3 */
