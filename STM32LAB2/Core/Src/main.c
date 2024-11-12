@@ -135,24 +135,24 @@ int main(void)
 
   /* Infinite loop */
   /* USER CODE BEGIN WHILE */
-  setTimer(0, 1000);
-  setTimer(1, 500);
+//  setTimer(0, 1000);
+//  setTimer(1, 500);
   while (1)
   {
     /* USER CODE END WHILE */
-	  if (timer_flag[0] == 1) {
-		  HAL_GPIO_TogglePin(GPIOA, GPIO_PIN_4);
-		  setTimer(0, 1000);
-	  }
-
-	  if (timer_flag[1] == 1) {
-		  run_7SEG(status);
-		  status++;
-		  if (status == 4) {
-			  status = 0;
-		  }
-		  setTimer(1, 500);
-	  }
+//	  if (timer_flag[0] == 1) {
+//		  HAL_GPIO_TogglePin(GPIOA, GPIO_PIN_4);
+//		  setTimer(0, 1000);
+//	  }
+//
+//	  if (timer_flag[1] == 1) {
+//		  run_7SEG(status);
+//		  status++;
+//		  if (status == 4) {
+//			  status = 0;
+//		  }
+//		  setTimer(1, 500);
+//	  }
     /* USER CODE BEGIN 3 */
   }
   /* USER CODE END 3 */
@@ -280,61 +280,24 @@ static void MX_GPIO_Init(void)
 }
 
 /* USER CODE BEGIN 4 */
-//int count_7seg = 50;
-//int count_led = 100;
-//int status = 0;
+int count_7seg = 50;
+int count_led = 100;
 void HAL_TIM_PeriodElapsedCallback(TIM_HandleTypeDef *htim) {
-	timerRun();
-//	if (count_led > 0) {
-//		count_led--;
-//		if (count_led <= 0) {
-//			count_led = 100;
-//			HAL_GPIO_TogglePin(GPIOA, GPIO_PIN_4);
-//		}
-//	}
-//
-//	if (count_7seg > 0) {
-//		count_7seg--;
-//		if (count_7seg <= 0) {
-//			count_7seg = 50;
-//			switch (status) {
-//				case 0:
-//					HAL_GPIO_WritePin(GPIOA, GPIO_PIN_6, GPIO_PIN_RESET);
-//					HAL_GPIO_WritePin(GPIOA, GPIO_PIN_7, GPIO_PIN_SET);
-//					HAL_GPIO_WritePin(GPIOA, GPIO_PIN_8, GPIO_PIN_SET);
-//					HAL_GPIO_WritePin(GPIOA, GPIO_PIN_9, GPIO_PIN_SET);
-//					display7SEG(1);
-//					status = 1;
-//					break;
-//				case 1:
-//					HAL_GPIO_WritePin(GPIOA, GPIO_PIN_6, GPIO_PIN_SET);
-//					HAL_GPIO_WritePin(GPIOA, GPIO_PIN_7, GPIO_PIN_RESET);
-//					HAL_GPIO_WritePin(GPIOA, GPIO_PIN_8, GPIO_PIN_SET);
-//					HAL_GPIO_WritePin(GPIOA, GPIO_PIN_9, GPIO_PIN_SET);
-//					display7SEG(2);
-//					status = 2;
-//					break;
-//				case 2:
-//					HAL_GPIO_WritePin(GPIOA, GPIO_PIN_6, GPIO_PIN_SET);
-//					HAL_GPIO_WritePin(GPIOA, GPIO_PIN_7, GPIO_PIN_SET);
-//					HAL_GPIO_WritePin(GPIOA, GPIO_PIN_8, GPIO_PIN_RESET);
-//					HAL_GPIO_WritePin(GPIOA, GPIO_PIN_9, GPIO_PIN_SET);
-//					display7SEG(3);
-//					status = 3;
-//					break;
-//				case 3:
-//					HAL_GPIO_WritePin(GPIOA, GPIO_PIN_6, GPIO_PIN_SET);
-//					HAL_GPIO_WritePin(GPIOA, GPIO_PIN_7, GPIO_PIN_SET);
-//					HAL_GPIO_WritePin(GPIOA, GPIO_PIN_8, GPIO_PIN_SET);
-//					HAL_GPIO_WritePin(GPIOA, GPIO_PIN_9, GPIO_PIN_RESET);
-//					display7SEG(0);
-//					status = 0;
-//					break;
-//				default:
-//					break;
-//			}
-//		}
-//	}
+//	timerRun();
+	count_led--;
+	if (count_led <= 0) {
+		count_led = 100;
+		HAL_GPIO_TogglePin(GPIOA, GPIO_PIN_4);
+	}
+
+	count_7seg--;
+	if (count_7seg <= 0) {
+		count_7seg = 50;
+		run_7SEG(status++);
+		if (status == 4) {
+			status = 0;
+		}
+	}
 }
 /* USER CODE END 4 */
 

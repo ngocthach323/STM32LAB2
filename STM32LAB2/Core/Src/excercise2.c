@@ -80,7 +80,5 @@ void run_7SEG(int status) {
 			HAL_GPIO_WritePin(GPIOA, GPIO_PIN_9, GPIO_PIN_RESET);
 			display7SEG(0);
 			break;
-		default:
-			break;
 	}
 }
