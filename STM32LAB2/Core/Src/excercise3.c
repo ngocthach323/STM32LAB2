@@ -141,7 +141,5 @@ void update7SEG(int index) {
 			HAL_GPIO_WritePin(GPIOA, GPIO_PIN_9, GPIO_PIN_RESET);
 			display7SEG(led_buffer[3]);
 			break;
-		default:
-			break;
 	}
 }
