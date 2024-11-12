@@ -113,8 +113,7 @@ int main(void)
 	  }
 
 	  if (timer_flag[2] == 1) {
-		  update7SEG(index_led);
-		  index_led++;
+		  update7SEG(index_led++);
 		  if (index_led == 4) {
 			  index_led = 0;
 		  }
