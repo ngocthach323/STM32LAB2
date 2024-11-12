@@ -116,30 +116,31 @@ int main(void)
 
   /* Infinite loop */
 //TODO setTimer
-  setTimer(0, 1000);
- 8000166:	f44f 717a 	mov.w	r1, #1000	; 0x3e8
- 800016a:	2000      	movs	r0, #0
- 800016c:	f000 f8fe 	bl	800036c <setTimer>
+  setTimer(0, 10);
+ 8000166:	210a      	movs	r1, #10
+ 8000168:	2000      	movs	r0, #0
+ 800016a:	f000 f8ff 	bl	800036c <setTimer>
   /* USER CODE BEGIN WHILE */
   while (1)
   {
     /* USER CODE END WHILE */
 	  //TODO excercise
 	  if (timer_flag[0] == 1) {
- 8000170:	4b07      	ldr	r3, [pc, #28]	; (8000190 <main+0x44>)
- 8000172:	681b      	ldr	r3, [r3, #0]
- 8000174:	2b01      	cmp	r3, #1
- 8000176:	d1fb      	bne.n	8000170 <main+0x24>
+ 800016e:	4b08      	ldr	r3, [pc, #32]	; (8000190 <main+0x44>)
+ 8000170:	681b      	ldr	r3, [r3, #0]
+ 8000172:	2b01      	cmp	r3, #1
+ 8000174:	d1fb      	bne.n	800016e <main+0x22>
 		  HAL_GPIO_TogglePin(GPIOA, GPIO_PIN_5);
- 8000178:	2120      	movs	r1, #32
- 800017a:	4806      	ldr	r0, [pc, #24]	; (8000194 <main+0x48>)
- 800017c:	f000 fcfc 	bl	8000b78 <HAL_GPIO_TogglePin>
+ 8000176:	2120      	movs	r1, #32
+ 8000178:	4806      	ldr	r0, [pc, #24]	; (8000194 <main+0x48>)
+ 800017a:	f000 fcfd 	bl	8000b78 <HAL_GPIO_TogglePin>
 		  setTimer(0, 2000);
- 8000180:	f44f 61fa 	mov.w	r1, #2000	; 0x7d0
- 8000184:	2000      	movs	r0, #0
- 8000186:	f000 f8f1 	bl	800036c <setTimer>
+ 800017e:	f44f 61fa 	mov.w	r1, #2000	; 0x7d0
+ 8000182:	2000      	movs	r0, #0
+ 8000184:	f000 f8f2 	bl	800036c <setTimer>
 	  if (timer_flag[0] == 1) {
- 800018a:	e7f1      	b.n	8000170 <main+0x24>
+ 8000188:	e7f1      	b.n	800016e <main+0x22>
+ 800018a:	bf00      	nop
  800018c:	20000050 	.word	0x20000050
  8000190:	20000098 	.word	0x20000098
  8000194:	40010800 	.word	0x40010800
